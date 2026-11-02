@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>optimizing brainfuck interpreter</title>
+    <style>
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+      .column-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .buttons {
+        display: flex;
+        gap: 10px;
+      }
+      h2.important {
+        color: #ff0000;
+      }
+      textarea {
+        resize: both;
+        min-width: 200px;
+        min-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <h1>optimizing brainfuck interpreter</h1>
+    <br>
+    <h2 class="important">work in progress!<br>doesn't work yet :(</h2>
+    <div class="container">
+      <div class="column-group">
+        <label for="code">code</label>
+        <br>
+        <textarea id="code" placeholder="code here..."></textarea>
+        <br>
+        <label for="input">input</label>
+        <br>
+        <textarea id="input" placeholder="input here..."></textarea>
+        <br>
+        <div class="buttons">
+          <button id="run" type="button">Run</button>
+          <button id="stop-resume" type="button" disabled>Stop</button>
+        </div>
+      </div>
+      <div class="column-group">
+        <label for="output">output</label>
+        <br>
+        <textarea id="output" readonly></textarea>
+      </div>
+    </div>
+  </body>
+</html>
