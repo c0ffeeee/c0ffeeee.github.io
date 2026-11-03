@@ -1,13 +1,11 @@
 // WORK IN PROGRESS!!!!!!!!!!!!!!!!
 
-const gebi = document.getElementById;
-
-gebi("run").addEventListener("click",()=>{
-  let code = gebi("code").value.replace(/[^-+<>\[\].,]/g,"");
-  let input = new TextEncoder().encode(gebi("input").value);
-  gebi("output").value = "";
-  gebi("stop-resume").disabled = false;
-  gebi("stop-resume").textContent = "Stop";
+document.getElementById("run").addEventListener("click",()=>{
+  let code = document.getElementById("code").value.replace(/[^-+<>\[\].,]/g,"");
+  let input = new TextEncoder().encode(document.getElementById("input").value);
+  document.getElementById("output").value = "";
+  document.getElementById("stop-resume").disabled = false;
+  document.getElementById("stop-resume").textContent = "Stop";
 
   let t = [];
   let c = "";
