@@ -38,11 +38,9 @@ document.getElementById("run").addEventListener("click",()=>{
   let b = [];
   for( i = 0 ; ai = a[i] ; i++ ){
     if( ai == "[" ){
-      if( a[i+2] == "]" ){
-        if( a[i+1] == "+" && Math.abs(t[i+1]) == 1 ){
-          ec += "mem[ptr]=0;";
-          i += 2;
-        }
+      if( a[i+2] == "]" && a[i+1] == "+" && Math.abs(t[i+1]) == 1 ){
+        ec += "mem[ptr]=0;";
+        i += 2;
       }else{
         b = [];
         p = 0;
