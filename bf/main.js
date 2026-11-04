@@ -63,7 +63,7 @@ document.getElementById("run").addEventListener("click",()=>{
           ec += "mem[ptr]=0;";
           i = j;
         }else{
-          ec += "{";
+          ec += "while(mem[ptr]){";
         }
       }
     }else if( ai == ">" ){
