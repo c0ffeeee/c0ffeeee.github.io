@@ -22,7 +22,7 @@ document.getElementById("run").addEventListener("click",()=>{
       if( a[a.length-1] == ">" ){
         t[t.length-1] += ( c == ">" ? 1 : -1 );
       }else{
-        t.push( c==">"?1:-1 );
+        t.push( c == ">" ? 1 : -1 );
         a.push( ">" );
       }
     }else{
@@ -57,7 +57,7 @@ document.getElementById("run").addEventListener("click",()=>{
         if( aj == "]" && b[0] == -1 ){
           for( let e of Object.entries(b) ){
             if( e[0] != "0" && e[1] != 0 ){
-              ec += "mem[ptr+" + ec[0] + "]+=mem[ptr]" + ( e[1] == 1 ? ";" : "*" + e[1] + ";" );
+              ec += "mem[ptr+" + e[0] + "]+=mem[ptr]" + ( e[1] == 1 ? ";" : "*" + e[1] + ";" );
             } 
           }
           ec += "mem[ptr]=0;";
