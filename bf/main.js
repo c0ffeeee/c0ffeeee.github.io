@@ -31,15 +31,15 @@ document.getElementById("run").addEventListener("click",()=>{
     }
   }
   let ec = "o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(30000);ptr=0;";
-  let ti = [];
+  let ai = "";
   let j = 0;
   let tj = [];
   let p = 0;
   let b = [];
-  for( i = 0 ; ti = t[i] ; i++ ){
-    if( ti == "[" ){
-      if( t[i+2] == "]" ){
-        if( t[i+1] == "+" && Math.abs(a[i+1]) == 1 ){
+  for( i = 0 ; ai = a[i] ; i++ ){
+    if( ai == "[" ){
+      if( a[i+2] == "]" ){
+        if( a[i+1] == "+" && Math.abs(t[i+1]) == 1 ){
           ec += "mem[ptr]=0;";
           i += 2;
         }
@@ -47,14 +47,14 @@ document.getElementById("run").addEventListener("click",()=>{
         b = [];
         p = 0;
         j = i;
-        for( ; ( tj = t[++j] ) == "+" || tj == ">" ; ){
-          if( tj == ">" ){
-            p += a[j];
+        for( ; ( aj = a[++j] ) == "+" || aj == ">" ; ){
+          if( aj == ">" ){
+            p += t[j];
           }else{
-            b[p] = ( b[p] || 0 ) + a[j];
+            b[p] = ( b[p] || 0 ) + t[j];
           }
         }
-        if( tj == "]" && b[0] == -1 ){
+        if( aj == "]" && b[0] == -1 ){
           for( let e of Object.entries(b) ){
             if( e[0] != "0" && e[1] != 0 ){
               ec += "mem[ptr+" + ec[0] + "]+=mem[ptr]" + ( e[1] == 1 ? ";" : "*" + e[1] + ";" );
@@ -66,15 +66,15 @@ document.getElementById("run").addEventListener("click",()=>{
           ec += "{";
         }
       }
-    }else if( ti == ">" ){
-      ec += "ptr=(ptr+" + a[i] + ")%30000;";
-    }else if( ti == "+" ){
-      ec += "mem[ptr]+=" + a[i] + ";";
-    }else if( ti == "," ){
+    }else if( ai == ">" ){
+      ec += "ptr=(ptr+" + t[i] + ")%30000;";
+    }else if( ai == "+" ){
+      ec += "mem[ptr]+=" + t[i] + ";";
+    }else if( ai == "," ){
       ec += "mem[ptr]=input[inpp++];";
-    }else if( ti == "." ){
+    }else if( ai == "." ){
       ec += "o.value+=String.fromCharCode(mem[ptr]);"
-    }else if( ti == "]" ){
+    }else if( ai == "]" ){
       ec += "};";
     }
   }
