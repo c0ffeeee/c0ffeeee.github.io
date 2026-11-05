@@ -73,8 +73,8 @@ document.getElementById("run").addEventListener("click",()=>{
     }else if( ai == "." ){
       ec += "o.value+=String.fromCharCode(mem[ptr]);"
     }else if( ai == "]" ){
-      ec += "}\n";
+      ec += "}";
     }
   }
-  console.log(ec); // debug
+  new Function(ec)()
 })
