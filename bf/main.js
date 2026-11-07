@@ -55,7 +55,7 @@ document.getElementById("run").addEventListener("click",()=>{
         if( aj == "]" && b[0] == -1 ){
           for( let e of Object.entries(b) ){
             if( e[0] != "0" && e[1] != 0 ){
-              ec += "mem[ptr+" + e[0] + "]+=mem[ptr]" + ( e[1] == 1 ? ";" : "*" + e[1] + ";" );
+              ec += "mem[ptr+" + e[0] + "]+=mem[ptr]" + "*" + e[1] + ";";
             } 
           }
           ec += "mem[ptr]=0;";
@@ -69,12 +69,18 @@ document.getElementById("run").addEventListener("click",()=>{
     }else if( ai == "+" ){
       ec += "mem[ptr]+=" + t[i] + ";";
     }else if( ai == "," ){
-      ec += "mem[ptr]=input[inpp++];";
+      ec += "mem[ptr]=input[inpp++]??-1;";
     }else if( ai == "." ){
       ec += "o.value+=String.fromCharCode(mem[ptr]);"
     }else if( ai == "]" ){
       ec += "}";
     }
   }
+  ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=\1;");
+  ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){\1}");
+  ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=\1;");
+  ec = ec.replace(/mem\[ptr\]([-+])=1;/g,"mem[ptr]\1\1;");
+  ec = ec.replace(/\+=mem\[ptr\]\*-(\d+);/g,"-=mem[ptr]*\1;");
+  ec = ec.replace(/\*1;/g,";");
   new Function(ec)()
 })
