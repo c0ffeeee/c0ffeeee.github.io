@@ -30,7 +30,7 @@ document.getElementById("run").addEventListener("click",()=>{
       a.push( c );
     }
   }
-  let ec = "o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(30000);ptr=0;";
+  let ec = "o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(32768);ptr=0;";
   let ai = "";
   let j = 0;
   let tj = [];
@@ -65,7 +65,7 @@ document.getElementById("run").addEventListener("click",()=>{
         }
       }
     }else if( ai == ">" ){
-      ec += "ptr=(ptr+" + t[i] + ")%30000;";
+      ec += "ptr=(ptr+" + t[i] + ")&32767;";
     }else if( ai == "+" ){
       ec += "mem[ptr]+=" + t[i] + ";";
     }else if( ai == "," ){
