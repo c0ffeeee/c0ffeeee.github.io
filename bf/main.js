@@ -77,8 +77,8 @@ document.getElementById("run").addEventListener("click",()=>{
     }
   }
   // ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;");
-  // ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1}");
-  // ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=$1;");
+  ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1}");
+  ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=$1;");
   ec = ec.replace(/mem\[ptr\]([-+])=1;/g,"mem[ptr]$1$1;");
   ec = ec.replace(/\+=mem\[ptr\]\*-(\d+);/g,"-=mem[ptr]*$1;");
   ec = ec.replace(/\*1;/g,";");
