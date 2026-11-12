@@ -76,7 +76,7 @@ document.getElementById("run").addEventListener("click",()=>{
       ec += "}";
     }
   }
-  ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;");
+  // ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;"); // this is buggy i don't know why if anyone can fix this please create a pull req
   ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1}");
   ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=$1;");
   ec = ec.replace(/mem\[ptr\]([-+])=1;/g,"mem[ptr]$1$1;");
