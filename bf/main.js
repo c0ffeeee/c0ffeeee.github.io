@@ -82,7 +82,7 @@ function encode(){
   }
   ec += "o.value=out;";
   
-  ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1;mem[ptr]=0;}"); // glitchy :(
+  // ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1;mem[ptr]=0;}"); // glitchy :(
   ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;");
   ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=$1;");
   ec = ec.replace(/mem\[ptr\]([-+])=1;/g,"mem[ptr]$1$1;");
