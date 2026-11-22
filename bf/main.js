@@ -30,7 +30,7 @@ document.getElementById("run").addEventListener("click",()=>{
       a.push( c );
     }
   }
-  let ec = "out="";o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(32768);ptr=0;";
+  let ec = "out=\"\";o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(32768);ptr=0;";
   let ai = "";
   let j = 0;
   let tj = [];
