@@ -1,6 +1,10 @@
 // WORK IN PROGRESS!!!!!!!!!!!!!!!!
 
 document.getElementById("run").addEventListener("click",()=>{
+  new Function(encode())();
+})
+
+function encode(){
   let code = document.getElementById("code").value.replace(/[^-+<>\[\].,]/g,"").replace(/[]/g,);
   document.getElementById("stop-resume").disabled = false;
   document.getElementById("stop-resume").textContent = "Stop";
@@ -78,12 +82,12 @@ document.getElementById("run").addEventListener("click",()=>{
   }
   ec += "o.value=out;";
   
-  ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1;mem[ptr]=0;}");
-  // ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;"); // this is buggy i don't know why if anyone can fix this please create a pull req
+  ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1;mem[ptr]=0;}"); // glitchy :(
+  ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;");
   ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=$1;");
   ec = ec.replace(/mem\[ptr\]([-+])=1;/g,"mem[ptr]$1$1;");
   ec = ec.replace(/\+=mem\[ptr\]\*-(\d+);/g,"-=mem[ptr]*$1;");
   ec = ec.replace(/\*1;/g,";");
   ec = ec.replace(/\+-/g,"-");
-  new Function(ec)()
-})
+  return ec;
+}
