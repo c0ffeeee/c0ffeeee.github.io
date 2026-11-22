@@ -30,7 +30,7 @@ document.getElementById("run").addEventListener("click",()=>{
       a.push( c );
     }
   }
-  let ec = "o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(32768);ptr=0;";
+  let ec = "out="";o=document.getElementById(\"output\");o.value=\"\";input=new TextEncoder().encode(document.getElementById(\"input\").value);inpp=0;mem=new Uint" + bits + "Array(32768);ptr=0;";
   let ai = "";
   let j = 0;
   let tj = [];
@@ -71,16 +71,19 @@ document.getElementById("run").addEventListener("click",()=>{
     }else if( ai == "," ){
       ec += "mem[ptr]=input[inpp++]??-1;";
     }else if( ai == "." ){
-      ec += "o.value+=String.fromCharCode(mem[ptr]);"
+      ec += "out+=String.fromCharCode(mem[ptr]);"
     }else if( ai == "]" ){
       ec += "}";
     }
   }
+  ec += "o.value=out;";
+  
   // ec = ec.replace(/mem\[ptr\]=0;mem\[ptr\]\+=(-?\d*);/g,"mem[ptr]=$1;"); // this is buggy i don't know why if anyone can fix this please create a pull req
   ec = ec.replace(/while\(mem\[ptr\]\){([^}]+)mem\[ptr\]=0;}/,"if(mem[ptr]){$1}");
   ec = ec.replace(/mem\[ptr\]\+=-(\d*);/g,"mem[ptr]-=$1;");
   ec = ec.replace(/mem\[ptr\]([-+])=1;/g,"mem[ptr]$1$1;");
   ec = ec.replace(/\+=mem\[ptr\]\*-(\d+);/g,"-=mem[ptr]*$1;");
   ec = ec.replace(/\*1;/g,";");
+  ec = ec.replace(/\+-/g,"-");
   new Function(ec)()
 })
