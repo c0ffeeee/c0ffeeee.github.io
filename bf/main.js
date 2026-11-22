@@ -1,7 +1,14 @@
 // WORK IN PROGRESS!!!!!!!!!!!!!!!!
 
 document.getElementById("run").addEventListener("click",()=>{
-  new Function(encode())();
+  try{
+    let t = Date.now();
+    new Function(encode())();
+    t = Date.now() - t;
+    document.getElementById("e").value = "Finished in " + t + "ms";
+  }catch(error){
+    document.getElementById("e").value = "Error: " + error.message;
+  }
 })
 
 function encode(){
