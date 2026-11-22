@@ -5,9 +5,9 @@ document.getElementById("run").addEventListener("click",()=>{
     let t = Date.now();
     new Function(encode())();
     t = Date.now() - t;
-    document.getElementById("e").value = "Finished in " + t + "ms";
+    document.getElementById("e").textContent = "Finished in " + t + "ms";
   }catch(error){
-    document.getElementById("e").value = "Error: " + error.message;
+    document.getElementById("e").textContent = "Error: " + error.message;
   }
 })
 
